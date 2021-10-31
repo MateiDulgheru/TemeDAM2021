@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">TemaDAM</string>
+    <string name="AppName">JEFIT</string>
+    <string name="RegisterString">CREATE ACCOUNT</string>
+    <string name="LoginString">LOGIN</string>
+    <string name="title_activity_login2">LoginActivity2</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="LoginPageString">Log In</string>
+    <string name="UsernameLoginString">Username</string>
+    <string name="PasswordLoginString">Password</string>
+    <string name="CreateAccountString">Create Account</string>
+    <string name="EmailString"> Email Adress</string>
+    <string name="MemberNoticeString">Already a member?</string>
+    <string name="NoMemberString">Not a member?</string>
+    <string name="JoinString">Join us</string>
+    <string name="Forgot_string">Forgot Password?</string>
+    <string name="Terms_Agreement_String">By proceeding, you agree to JEFIT\'s Terms of Service and Privacy Policy.</string>
+    <string name="login_options">Or continue with</string>
+    <string name="Google_Sign">SIGN IN WITH GOOGLE</string>
+    <string name="Facebook_sign">SIGN IN WITH FACEBOOK</string>
+    <string name="Apple_sign">SIGN IN WITH APPLE</string>
+    <string name="Password_guide">Minimum of 8 characters 1 number(0-9) 1 lowercase letter (a-z) 1
+        uppercase letter (A-Z) 1 special character (from standard US keyboard)</string>
+    <string name="TitluAntrenamente">Antrenamente</string>
+    <string name="UpdateList">Update List</string>
+</resources>
