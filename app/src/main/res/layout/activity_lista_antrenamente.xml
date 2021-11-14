@@ -26,6 +26,15 @@
         android:textColor="#FFFFFF"
         tools:ignore="TextContrastCheck" />
 
+    <Button
+        android:id="@+id/btnJson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#03A9F4"
+        android:text="@string/Json_Import_String"
+        android:textColor="#FFFFFF"
+        tools:ignore="TextContrastCheck" />
+
     <ListView
         android:id="@+id/lvAntrenamente"
         android:layout_width="match_parent"

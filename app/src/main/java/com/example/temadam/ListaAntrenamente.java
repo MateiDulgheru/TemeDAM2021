@@ -3,6 +3,7 @@ package com.example.temadam;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,7 +17,8 @@ public class ListaAntrenamente extends AppCompatActivity {
 
     private ListView listView;
     private AntrenamentAdapter antrenamentAdapter;
-    private Button btnUpdate;
+    private Button btnUpdate,btnImportJson;
+    private JsonRead jsonRead;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +26,10 @@ public class ListaAntrenamente extends AppCompatActivity {
         setContentView(R.layout.activity_lista_antrenamente);
 
         btnUpdate=findViewById(R.id.btnUpdate);
-
+        btnImportJson=findViewById(R.id.btnJson);
         listView=findViewById(R.id.lvAntrenamente);
+
+        jsonRead=new JsonRead();
 
         antrenamentAdapter=new AntrenamentAdapter(createList());
         listView.setAdapter(antrenamentAdapter);
@@ -44,6 +48,42 @@ public class ListaAntrenamente extends AppCompatActivity {
 
             }
         });
+
+        btnImportJson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Thread thread=new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        jsonRead.readJson("https://jsonkeeper.com/b/GBQI", new IResponse() {
+                            @Override
+                            public void onSuccess(List<Antrenament> list) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        antrenamentAdapter.updateList(list);
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onError(String errorMessage) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(ListaAntrenamente.this,errorMessage, Toast.LENGTH_LONG).show();
+                                    }
+                                });
+
+                            }
+                        });
+                    }
+                });
+                thread.start();
+            }
+        });
+
+
     }
 
     private List<Antrenament> createList(){

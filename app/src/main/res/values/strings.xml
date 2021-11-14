@@ -30,4 +30,5 @@
         uppercase letter (A-Z) 1 special character (from standard US keyboard)</string>
     <string name="TitluAntrenamente">Antrenamente</string>
     <string name="UpdateList">Update List</string>
+    <string name="Json_Import_String">Import Json</string>
 </resources>

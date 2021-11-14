@@ -1,10 +1,12 @@
 package com.example.temadam;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +53,10 @@ public class AntrenamentAdapter extends BaseAdapter {
 
     public void updateList(List<Antrenament> lista){
         //listaAntrenamente.clear();
-        listaAntrenamente.addAll(lista);
-        notifyDataSetChanged();
+        if((listaAntrenamente.containsAll(lista))!=true){
+            listaAntrenamente.addAll(lista);
+            Log.v("Proba",listaAntrenamente.containsAll(lista)+"");
+            notifyDataSetChanged();
+        }
     }
 }
