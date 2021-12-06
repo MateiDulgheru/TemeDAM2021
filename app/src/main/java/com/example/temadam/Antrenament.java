@@ -1,20 +1,42 @@
 package com.example.temadam;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
+@Entity(tableName = "Antrenamente")
 public class Antrenament {
 
+    @PrimaryKey(autoGenerate = true)
+    @NotNull
+    private Integer id;
+    @ColumnInfo(name="Denumire")
     private String denumire;
+    @ColumnInfo(name="Durata")
     private Integer durata;
+    @ColumnInfo(name="Echipament")
     private String echipament;
 
-    public Antrenament() {
-    }
+
+
+    public Antrenament() { }
 
     public Antrenament(String denumire, Integer durata, String echipament) {
         this.denumire = denumire;
         this.durata = durata;
         this.echipament = echipament;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDenumire() {

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 public class ListaAntrenamente extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class ListaAntrenamente extends AppCompatActivity {
     private AntrenamentAdapter antrenamentAdapter;
     private Button btnUpdate,btnImportJson;
     private JsonRead jsonRead;
+    private AntrenamentDAO antrenamentDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +85,62 @@ public class ListaAntrenamente extends AppCompatActivity {
             }
         });
 
+//        Thread thread=new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                antrenamentDAO=DatabaseAccess.getInstance(ListaAntrenamente.this).getDatabase().antrenamentDAO();
+//                //antrenamentDAO.insertList(createList());
+//                //antrenamentDAO.insertList(createList2());
+//
+//                Antrenament antrenament1=new Antrenament("Alergare",10,"Banda");
+//                Antrenament antrenament2=new Antrenament("Ridicari",15,"Greutati");
+//                Antrenament antrenament3=new Antrenament("Tractiuni",20,"Bara");
+//
+//                antrenamentDAO.insertAll(antrenament1,antrenament2,antrenament3);
+//
+//
+//                List<Antrenament> list1=antrenamentDAO.getAll();
+//                List<Antrenament> list2=antrenamentDAO.getAllWithTime(20);
+//                antrenamentDAO.delete(antrenament3);
+//                List<Antrenament> list3=antrenamentDAO.getAllWithTime(20);
+//
+//                Log.v("Lista1",list1.toString());
+//                Log.v("Lista2",list2.toString());
+//                Log.v("Lista3",list3.toString());
+//            }
+//        });
+//
+//        thread.start();
 
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                antrenamentDAO=DatabaseAccess.getInstance(ListaAntrenamente.this).getDatabase().antrenamentDAO();
+                //antrenamentDAO.insertList(createList());
+                //antrenamentDAO.insertList(createList2());
+
+                antrenamentDAO.deleteAll();
+
+                Antrenament antrenament1=new Antrenament("Alergare",10,"Banda");
+                Antrenament antrenament2=new Antrenament("Ridicari",15,"Greutati");
+                Antrenament antrenament3=new Antrenament("Tractiuni",20,"Bara");
+
+                antrenamentDAO.insertAll(antrenament1,antrenament2,antrenament3);
+
+
+                List<Antrenament> list1=antrenamentDAO.getAll();
+                List<Antrenament> list2=antrenamentDAO.getAllWithTime(20);
+                //antrenamentDAO.delete(antrenament3);
+                antrenamentDAO.deleteByProperties(antrenament3.getDenumire(),antrenament3.getDurata(),antrenament3.getEchipament());
+                List<Antrenament> list3=antrenamentDAO.getAllWithTime(20);
+                List<Antrenament> list4=antrenamentDAO.getAll();
+
+                Log.v("ListaAll_1",list1.toString());
+                Log.v("ListaTime_1",list2.toString());
+                Log.v("ListaTime_2",list3.toString());
+                Log.v("ListaAll_2",list4.toString());
+            }
+        });
     }
 
     private List<Antrenament> createList(){
