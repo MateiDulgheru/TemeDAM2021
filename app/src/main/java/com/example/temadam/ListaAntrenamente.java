@@ -1,5 +1,6 @@
 package com.example.temadam;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,6 +10,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -139,6 +146,45 @@ public class ListaAntrenamente extends AppCompatActivity {
                 Log.v("ListaTime_1",list2.toString());
                 Log.v("ListaTime_2",list3.toString());
                 Log.v("ListaAll_2",list4.toString());
+
+                writeToDatabase(list4);
+                readFromDatabase();
+            }
+        });
+    }
+
+    public void writeToDatabase(List<Antrenament> list){
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference reference=database.getReference("Antrenamente");
+
+        for(int i=0; i<list.size(); i++){
+            int j=i+1;
+            reference.child("Antrenament"+ j).setValue(list.get(i));
+        }
+    }
+
+    public void readFromDatabase(){
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference reference=database.getReference("Antrenamente");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                Antrenament value=snapshot.child("Antrenament1").getValue(Antrenament.class);
+//                Log.d("Citire","Value is: "+value.toString());
+
+                int counter= (int) snapshot.getChildrenCount();
+                for(int i=1; i<=counter; i++)
+                {
+                    Antrenament value=snapshot.child("Antrenament"+i).getValue(Antrenament.class);
+                    Log.d("Citire", "Antrenament"+i+" is: "+value.toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("Citire","Failed to read value.",error.toException());
+
             }
         });
     }

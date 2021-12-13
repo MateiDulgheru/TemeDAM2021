@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "231491398815",
+    "project_id": "temadam2021-b943f",
+    "storage_bucket": "temadam2021-b943f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231491398815:android:cf9faae73f29b2412086aa",
+        "android_client_info": {
+          "package_name": "com.example.temadam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231491398815-uqeioh9ghugvjp04i2ne24fdakfovbui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpMyewIYo7tcgWDajD-WtpMzlBBCnQ2R4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231491398815-uqeioh9ghugvjp04i2ne24fdakfovbui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
