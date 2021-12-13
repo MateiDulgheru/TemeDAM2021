@@ -170,14 +170,21 @@ public class ListaAntrenamente extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                Antrenament value=snapshot.child("Antrenament1").getValue(Antrenament.class);
-//                Log.d("Citire","Value is: "+value.toString());
 
-                int counter= (int) snapshot.getChildrenCount();
-                for(int i=1; i<=counter; i++)
+                //Metoda 1
+
+//                int counter= (int) snapshot.getChildrenCount();
+//                for(int i=1; i<=counter; i++)
+//                {
+//                    Antrenament value=snapshot.child("Antrenament"+i).getValue(Antrenament.class);
+//                    Log.d("Citire", "Antrenament"+i+" is: "+value.toString());
+//                }
+
+                //Metoda 2
+                for(DataSnapshot child :snapshot.getChildren())
                 {
-                    Antrenament value=snapshot.child("Antrenament"+i).getValue(Antrenament.class);
-                    Log.d("Citire", "Antrenament"+i+" is: "+value.toString());
+                    Antrenament value=child.getValue(Antrenament.class);
+                    Log.d("Citire", child.getKey().toString()+": "+value.toString());
                 }
             }
 
